@@ -36,6 +36,8 @@ public class FramePrincipal extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		
 		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(null);
+		desktopPane.setOpaque(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

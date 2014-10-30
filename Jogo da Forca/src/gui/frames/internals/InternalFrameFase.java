@@ -1,5 +1,8 @@
 package gui.frames.internals;
 
+import gui.panels.PainelFase;
+import gui.panels.PanelPalavra;
+
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -17,19 +20,23 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 public class InternalFrameFase extends JInternalFrame {
 	
 	private JPanel panelCentral;
 	private JToolBar toolBar;
 	private JButton buttonAddFase;
+	private JButton buttonAddPalavra;
+	private JScrollPane scrollPane;
 	private JTabbedPane tabbedPane;
 	
 	/**
 	 * Create the frame.
 	 */
 	public InternalFrameFase() {
-		setBounds(100, 100, 720, 369);
+		setBounds(0, 0, 900, 600);
 		setVisible(true);
 		setClosable(true);
 		toolBar = new JToolBar();
@@ -55,28 +62,37 @@ public class InternalFrameFase extends JInternalFrame {
 					.addContainerGap())
 		);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	
+		scrollPane = new JScrollPane();
+		scrollPane.setBackground(null);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
 		GroupLayout gl_panelCentral = new GroupLayout(panelCentral);
 		gl_panelCentral.setHorizontalGroup(
 			gl_panelCentral.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelCentral.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panelCentral.setVerticalGroup(
 			gl_panelCentral.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelCentral.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
 					.addContainerGap())
 		);
+		UIManager.put("TabbedPane.contentOpaque", false);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		scrollPane.setViewportView(tabbedPane);
 		panelCentral.setLayout(gl_panelCentral);
 		
 		buttonAddFase = new JButton("Adicionar Fase");
 		buttonAddFase.addActionListener(new NovaFase());
 		toolBar.add(buttonAddFase);
+		
+		buttonAddPalavra = new JButton("Adicionar Palavra");
+		toolBar.add(buttonAddPalavra);
+		buttonAddPalavra.addActionListener(new NovaPalavra());
 		getContentPane().setLayout(groupLayout);
 		
 		
@@ -117,11 +133,24 @@ public class InternalFrameFase extends JInternalFrame {
 		}
 		
 		private void addFase(){
-			JPanel painel = new JPanel();
+			JPanel painel = new PainelFase();
 			painel.setOpaque(false);
 			tabbedPane.add(painel);
 			tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(painel), getTitlePanel(tabbedPane,painel,"Fase "));
 		}		
+		
+	}
+	
+	private class NovaPalavra implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			PainelFase painelFase = (PainelFase) tabbedPane.getSelectedComponent();
+			painelFase.addPalavra();
+			tabbedPane.revalidate();
+			tabbedPane.repaint();
+		}
 		
 	}
 }
