@@ -1,0 +1,127 @@
+package gui.frames.internals;
+
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JInternalFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JToolBar;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTabbedPane;
+
+public class InternalFrameFase extends JInternalFrame {
+	
+	private JPanel panelCentral;
+	private JToolBar toolBar;
+	private JButton buttonAddFase;
+	private JTabbedPane tabbedPane;
+	
+	/**
+	 * Create the frame.
+	 */
+	public InternalFrameFase() {
+		setBounds(100, 100, 720, 369);
+		setVisible(true);
+		setClosable(true);
+		toolBar = new JToolBar();
+		
+		panelCentral = new JPanel();
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	
+		GroupLayout gl_panelCentral = new GroupLayout(panelCentral);
+		gl_panelCentral.setHorizontalGroup(
+			gl_panelCentral.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelCentral.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panelCentral.setVerticalGroup(
+			gl_panelCentral.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelCentral.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		panelCentral.setLayout(gl_panelCentral);
+		
+		buttonAddFase = new JButton("Adicionar Fase");
+		buttonAddFase.addActionListener(new NovaFase());
+		toolBar.add(buttonAddFase);
+		getContentPane().setLayout(groupLayout);
+		
+		
+
+	}
+	
+	private static JPanel getTitlePanel(final JTabbedPane tabbedPane, final JPanel panel, String title){	 
+		  JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		  
+		  titlePanel.setOpaque(false);
+		  JLabel titleLbl = new JLabel(title +" "+tabbedPane.indexOfComponent(panel));
+		  titleLbl.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		  titlePanel.add(titleLbl);		  
+		  JButton closeButton = new JButton("x");
+		  closeButton.setSize(17, 17);
+		  closeButton.setOpaque(false);
+		  closeButton.setContentAreaFilled(false);
+		  closeButton.setBorderPainted(false);
+		  closeButton.addMouseListener(new MouseAdapter(){		  
+		   @Override
+		   public void mouseClicked(MouseEvent e){		   
+			tabbedPane.remove(panel);			
+		   }
+		  });
+		  titlePanel.add(closeButton);
+		  return titlePanel;
+	 }
+	
+	/*CLASSES INTERNAS PARA TRATAMENTO DE EVENTOS*/
+	
+	private class NovaFase implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			addFase();
+			
+		}
+		
+		private void addFase(){
+			JPanel painel = new JPanel();
+			painel.setOpaque(false);
+			tabbedPane.add(painel);
+			tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(painel), getTitlePanel(tabbedPane,painel,"Fase "));
+		}		
+		
+	}
+}
