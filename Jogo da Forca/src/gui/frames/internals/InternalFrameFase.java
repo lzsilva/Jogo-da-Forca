@@ -3,12 +3,16 @@ package gui.frames.internals;
 import gui.panels.PainelFase;
 import gui.panels.PanelPalavra;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
@@ -103,7 +107,7 @@ public class InternalFrameFase extends JInternalFrame {
 		  JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		  
 		  titlePanel.setOpaque(false);
-		  JLabel titleLbl = new JLabel(title +" "+tabbedPane.indexOfComponent(panel));
+		  JLabel titleLbl = new JLabel(title +" "+(tabbedPane.indexOfComponent(panel)+1));
 		  titleLbl.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 		  titlePanel.add(titleLbl);		  
 		  JButton closeButton = new JButton("x");
@@ -114,7 +118,14 @@ public class InternalFrameFase extends JInternalFrame {
 		  closeButton.addMouseListener(new MouseAdapter(){		  
 		   @Override
 		   public void mouseClicked(MouseEvent e){		   
-			tabbedPane.remove(panel);			
+			tabbedPane.remove(panel);
+			List<Component> componentes = (List<Component>) Arrays.asList(tabbedPane.getComponents());
+			for(Component painel: componentes){	
+				if(tabbedPane.indexOfComponent(painel)>=0){
+					tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(painel), getTitlePanel(tabbedPane, (JPanel) painel,"Fase"));
+				}
+				
+			}
 		   }
 		  });
 		  titlePanel.add(closeButton);
