@@ -11,12 +11,21 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
+import entidades.Palavra;
+import gui.dialogs.DialogTipoMultimidia;
+
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelPalavra extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton buttonMultimidia;
+	private JButton buttonConfigurar;
+	private JButton buttonDeletar;
+	private Palavra palavra;
 
 	/**
 	 * Create the panel.
@@ -28,6 +37,8 @@ public class PanelPalavra extends JPanel {
 		textField.setColumns(10);
 		setMaximumSize(new Dimension(700, 100));
 		
+		palavra = new Palavra();
+		
 		JLabel lblPalavra = new JLabel("Palavra:");
 		
 		textField_1 = new JTextField();
@@ -35,11 +46,12 @@ public class PanelPalavra extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Pista:");
 		
-		JButton btnNewButton = new JButton("Multim\u00EDdia");
+		buttonMultimidia = new JButton("Multim\u00EDdia");
+		buttonMultimidia.addActionListener(new Multimidia());
 		
-		JButton btnNewButton_1 = new JButton("Configurar");
+		buttonConfigurar = new JButton("Configurar");
 		
-		JButton btnNewButton_2 = new JButton("Deletar");
+		JButton buttonDeletar = new JButton("Deletar");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -53,11 +65,11 @@ public class PanelPalavra extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(btnNewButton)
+							.addComponent(buttonMultimidia)
 							.addGap(18)
-							.addComponent(btnNewButton_1)
+							.addComponent(buttonConfigurar)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton_2))
+							.addComponent(buttonDeletar))
 						.addComponent(lblNewLabel))
 					.addContainerGap())
 		);
@@ -72,12 +84,24 @@ public class PanelPalavra extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2))
+						.addComponent(buttonMultimidia)
+						.addComponent(buttonConfigurar)
+						.addComponent(buttonDeletar))
 					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
+	}
+	
+	/*CLASSES INTERNAR PARA TRATAMENTO DE EVETO*/
+	
+	private class Multimidia implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			DialogTipoMultimidia dialog = new DialogTipoMultimidia(palavra);
+			dialog.setVisible(true);
+		}
 	}
 }
