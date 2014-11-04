@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
 
 import entidades.Palavra;
 import gui.dialogs.DialogTipoMultimidia;
+import gui.frames.FrameConfigurarPalavra;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,38 +21,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelPalavra extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JButton buttonMultimidia;
+	private JTextField textFieldPalavra;
+	private JTextField textFieldDica;
 	private JButton buttonConfigurar;
 	private JButton buttonDeletar;
 	private Palavra palavra;
-
+	private PainelFase painelFase;
 	/**
 	 * Create the panel.
 	 */
-	public PanelPalavra() {
-		setBorder(null);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
+	public PanelPalavra(final PainelFase painelFase) {
+		setBorder(null);		
+		textFieldPalavra = new JTextField();
+		textFieldPalavra.setColumns(10);
 		setMaximumSize(new Dimension(700, 100));
 		
 		palavra = new Palavra();
 		
 		JLabel lblPalavra = new JLabel("Palavra:");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textFieldDica = new JTextField();
+		textFieldDica.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Pista:");
 		
-		buttonMultimidia = new JButton("Multim\u00EDdia");
-		buttonMultimidia.addActionListener(new Multimidia());
-		
 		buttonConfigurar = new JButton("Configurar");
+		buttonConfigurar.addActionListener(new Configurar());
 		
 		JButton buttonDeletar = new JButton("Deletar");
+		buttonDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelFase.remove(getThis());
+				
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -59,17 +62,16 @@ public class PanelPalavra extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblPalavra)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldPalavra, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(buttonMultimidia)
+							.addComponent(textFieldDica, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
 							.addGap(18)
 							.addComponent(buttonConfigurar)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(buttonDeletar))
+							.addGap(18)
+							.addComponent(buttonDeletar)
+							.addGap(89))
 						.addComponent(lblNewLabel))
 					.addContainerGap())
 		);
@@ -82,26 +84,41 @@ public class PanelPalavra extends JPanel {
 						.addComponent(lblNewLabel))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(buttonMultimidia)
+						.addComponent(textFieldPalavra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldDica, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonConfigurar)
 						.addComponent(buttonDeletar))
-					.addContainerGap(15, Short.MAX_VALUE))
+					.addContainerGap(64, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
 	}
 	
-	/*CLASSES INTERNAR PARA TRATAMENTO DE EVETO*/
+	public Palavra getPalavra(){
+		return palavra;
+	}
 	
-	private class Multimidia implements ActionListener{
+	public void atualizaPanel(){
+		textFieldPalavra.setText(palavra.getPalavra());
+		textFieldDica.setText(palavra.getDica());
+	}
+	
+	private PanelPalavra getThis(){
+		return this;
+	}
+	
+	/*CLASSES INTERNAR PARA TRATAMENTO DE EVETO*/	
+	
+	private class Configurar implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			DialogTipoMultimidia dialog = new DialogTipoMultimidia(palavra);
-			dialog.setVisible(true);
+			palavra.setPalavra(textFieldPalavra.getText());
+			palavra.setDica(textFieldDica.getText());
+			FrameConfigurarPalavra frameConfigurarPalavra = new FrameConfigurarPalavra(getThis()); 
 		}
+	
 	}
+	
 }

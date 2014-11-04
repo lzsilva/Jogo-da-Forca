@@ -15,10 +15,10 @@ public class EscolherArquivo {
 	
 	private JFileChooser fileChooser;
 	private FileFilter filtro;
-	private Palavra palavra;
 	
-	public EscolherArquivo(String tipo, Palavra palavra){		
-		this.palavra = palavra;
+	
+	public EscolherArquivo(String tipo, Palavra palavra){
+		palavra.setPalavra("tensis");
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
 		
@@ -37,8 +37,7 @@ public class EscolherArquivo {
 		fileChooser.setFileFilter(filtro);
 		int r = fileChooser.showOpenDialog(new JFrame());
 	    if (r == JFileChooser.APPROVE_OPTION) {
-	      palavra.setURLMultimidia(fileChooser.getSelectedFile().getAbsolutePath());
-	      System.out.println("Voce selecionou o arquivo: " + palavra.getURLMultimidia());
+	      palavra.setURLMultimidia(fileChooser.getSelectedFile().getAbsolutePath());	           
 	    }
 	}
 

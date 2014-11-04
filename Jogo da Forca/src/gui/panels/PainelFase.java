@@ -1,20 +1,25 @@
 package gui.panels;
 
+import java.awt.Component;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 
+import entidades.Palavra;
+
 public class PainelFase extends JPanel {
 
 	private JScrollPane scrollPane;
 	private JPanel panel;
+	
 	/**
 	 * Create the panel.
 	 */
-	public PainelFase() {
-		setBorder(null);
+	public PainelFase() {		
 		
 		scrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -42,9 +47,21 @@ public class PainelFase extends JPanel {
 
 	}
 	
+	@Override
+	public void remove(Component component){
+		panel.remove(component);
+		panel.repaint();
+		panel.revalidate();
+	}
+	
+	@Override
+	public Component[] getComponents(){
+		return panel.getComponents();
+	}
+	
 	public void addPalavra(){
-		PanelPalavra panelPalavra = new PanelPalavra();
+		PanelPalavra panelPalavra = new PanelPalavra(this);
 		panelPalavra.setBorder(null);
 		panel.add(panelPalavra);
-	}
+	}	
 }

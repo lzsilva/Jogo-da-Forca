@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
@@ -23,6 +24,7 @@ import java.awt.Font;
 import javax.swing.border.EtchedBorder;
 
 import entidades.Palavra;
+import gui.frames.FrameConfigurarPalavra;
 import arquivo.filechoose.EscolherArquivo;
 
 import java.awt.event.ActionListener;
@@ -45,21 +47,22 @@ public class DialogTipoMultimidia extends JDialog {
 	
 	private String escolha;
 	
-	private Palavra palavra;
+	private final Palavra palavra;
 
 	/**
 	 * Create the dialog.
 	 */
-	public DialogTipoMultimidia(final Palavra palavra) {
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setVisible(true);
+	public DialogTipoMultimidia(FrameConfigurarPalavra framePai,final Palavra palavra) {
+		
+		super(framePai);
+		super.setModal(true);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);		
 		setBounds(100, 100, 539, 303);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
+		getContentPane().add(contentPanel, BorderLayout.CENTER);		
 		this.palavra = palavra;
-		
+		this.palavra.setPalavra("Palavra mudou no Dialog");		
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
@@ -71,17 +74,17 @@ public class DialogTipoMultimidia extends JDialog {
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(128)
-					.addComponent(labelMidia)
-					.addContainerGap(118, Short.MAX_VALUE))
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(137)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(127, Short.MAX_VALUE))
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(89)
-					.addComponent(panelArquivo, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(80, Short.MAX_VALUE))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(128)
+							.addComponent(labelMidia))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(137)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panelArquivo, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)))
+					.addContainerGap())
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -92,7 +95,7 @@ public class DialogTipoMultimidia extends JDialog {
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(panelArquivo, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-					.addGap(0, 0, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		JLabel labelInformaAssociacao = new JLabel("J\u00E1 existe um arquivo multim\u00EDdia associado \u00E0 palavra.");
@@ -110,18 +113,17 @@ public class DialogTipoMultimidia extends JDialog {
 		gl_panelArquivo.setHorizontalGroup(
 			gl_panelArquivo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelArquivo.createSequentialGroup()
-					.addGroup(gl_panelArquivo.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelArquivo.createSequentialGroup()
-							.addGap(14)
-							.addComponent(labelInformaAssociacao))
-						.addGroup(gl_panelArquivo.createSequentialGroup()
-							.addGap(40)
-							.addComponent(labelInformaTroca)))
-					.addContainerGap())
-				.addGroup(gl_panelArquivo.createSequentialGroup()
 					.addGap(14)
-					.addComponent(labelArquivo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(labelArquivo, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
 					.addGap(14))
+				.addGroup(gl_panelArquivo.createSequentialGroup()
+					.addGap(88)
+					.addComponent(labelInformaAssociacao)
+					.addContainerGap(89, Short.MAX_VALUE))
+				.addGroup(gl_panelArquivo.createSequentialGroup()
+					.addGap(114)
+					.addComponent(labelInformaTroca)
+					.addContainerGap(114, Short.MAX_VALUE))
 		);
 		gl_panelArquivo.setVerticalGroup(
 			gl_panelArquivo.createParallelGroup(Alignment.LEADING)
@@ -179,6 +181,7 @@ public class DialogTipoMultimidia extends JDialog {
 					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
+		
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
@@ -220,8 +223,13 @@ public class DialogTipoMultimidia extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		super.setModal(true);
+		super.setVisible(true);
 	}
+	
 	private JDialog getThis(){
 		return this;
-	}
+	}	
+	
 }
