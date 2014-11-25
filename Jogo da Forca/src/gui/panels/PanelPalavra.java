@@ -13,7 +13,7 @@ import javax.swing.border.LineBorder;
 
 import entidades.Palavra;
 import gui.dialogs.DialogTipoMultimidia;
-import gui.frames.FrameConfigurarPalavra;
+import gui.frames.FrameConfiguraPalavra;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -116,7 +116,7 @@ public class PanelPalavra extends JPanel {
 			// TODO Auto-generated method stub
 			palavra.setPalavra(textFieldPalavra.getText());
 			palavra.setDica(textFieldDica.getText());
-			FrameConfigurarPalavra frameConfigurarPalavra = new FrameConfigurarPalavra(getThis()); 
+			FrameConfiguraPalavra frameConfigurarPalavra = new FrameConfiguraPalavra(getThis()); 
 		}
 	
 	}

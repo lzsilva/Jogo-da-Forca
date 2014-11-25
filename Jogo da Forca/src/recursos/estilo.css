@@ -1,0 +1,248 @@
+
+body{
+		font-size:100%;	
+		background-color:?bgColor;	
+	}
+
+		.janelaModal{
+				position: fixed;
+				font-family: Arial, Helvetica,Sans-Serif;
+				top: 0;
+				right: 0;
+				bottom:0;
+				left:0;
+				background: rgba(0,0,0,0.8);
+				z-index: 99999;
+				opacity:0;
+				-webkit-transition: opacity 400ms esase-in;
+				-moz-transition: opacity 400ms esase-in;
+				transition: opacity 400ms esase-in;
+				pointer-events: none;
+			}
+			
+			.janelaModal:target{
+				opacity:1;
+				pointer-events:auto;
+			}
+			
+			.janelaModal > div{
+				width:50%;
+				position: relative;
+				margin: 10% auto;
+				padding: 5px 20px 15px 20px;				
+				border-radius: 10px;
+				background: -moz-linear-gradient(#fff, #999);
+				background: -webkit-linear-gradient(#fff,#999);
+				background: -o-linear-gradient(#fff,#999);
+			}
+			.fechar{
+				background: #606061;
+				color:FFFFFF;
+				line-height: 25px;
+				position: absolute;
+				right: -12px;
+				text-align: center;
+				top: -10px;
+				width: 24px;
+				text-decoration:none;
+				font-weight:bold;
+				-webkit-border-radius: 12px;
+				-moz-border-radius: 12px;
+				border-radius: 12px;
+				-moz-box-shadow: 1px 1px 3px #000;
+				-webkit-box-shadow: 1px 1px 3px #000;
+				box-shadow: 1px 1px 3px #000;			
+			}
+			
+			.fechar:hover{
+				background:#00d9FF;
+			}
+
+	p{
+	  margin: 0;
+	  padding: 0;
+	  font-size: 1.6em;
+	}
+
+	.container{		
+		width: 100%; /*Largura do tamanho da view*/
+		height: 100%; /*Altura do tamanho da view */		
+	}
+		.content{
+			width: 100%; 
+			height: 100%; 		
+		}
+			.div-titulo{
+				width: 100%; 
+				height: 15%;
+			}
+				.titulo{
+					color: ?corTitulo;
+				}
+		
+			.boneco-chutes{
+				margin: auto;
+				text-align: center;
+				width: 25%; 
+				height: 80%; 				
+				float: left;
+			}
+				.imagem{
+					max-width:70%;
+				}
+					
+				.fase{
+					color:?corLabelFase;
+				}
+			
+				
+				.acertos{
+					color:?corAcertos;
+				}
+				.erros{
+					color:?corErros;					
+				}
+			
+			
+			.palavra-teclado{
+				width: 40%;
+				height: 80%;				
+				float: left;
+				font-size: 100%;				
+			}	
+				.entrada{					
+					border-left:0;
+					border-right:0;
+					border-top: 0;
+					text-align: center;						
+					background-color:?bgColor;
+					color:?corLetrasPalavra;
+					border-color:?corLetrasPalavra;
+					font-size: 1.3em;
+					font-weight:bold;
+				}
+
+				.container-teclado{
+					margin: 0 auto;					
+					max-width:100%;
+					max-height:100%;
+					width: 90%;
+					height:100%;
+					
+				}
+					
+				.teclado{					
+					margin: 0 auto;
+					float: left;
+					max-width:100%;
+					max-height:100%;
+					width: 100%;
+					height: 50%;
+					border: 1;					
+					table-layout:fixed;					
+				}
+					.fundo-tecla{						
+						text-align: center;						
+						background-color: transparent;						
+					}
+						.tecla{		
+							background-color:?corFundoTecla;
+							border-radius: 20%;
+							width:100%;
+							height:100%;
+							border: 0;
+							font-size: 2.0em;
+							color:?corLetraTecla;							
+						}
+						.tecla:hover{
+							background-color:?corHover;
+						}
+						
+			
+			.dica{
+				float: left;
+				width: 30%;
+				height: 80%;
+				
+			}
+				.div-dica{
+					width: 95%;
+					margin: 0 auto;
+				}
+				
+				.video{						
+					width:100%; 
+					height:100%;
+				}
+				.audio{
+					height:10%;
+					width:100%;
+				}
+				
+				.dica-textual{
+					color:?corDica;
+				}
+					
+				.multimidia{
+					max-width:100%;
+				}
+
+
+	@media all and (max-width: 479px) {
+	
+		body{
+			font-size: 100%;
+		}
+		
+		p{
+			font-size: 1.3em;
+		}
+		.div-titulo{
+			height:5%;			
+		}
+		.boneco-chutes{			
+			width: 100%;
+			height: 20%;			
+		}
+			.imagem{
+				float: left;
+				width: 30%;
+				height: 90%;
+			}			
+		
+		.palavra-teclado{			
+			width: 100%;
+			height:40%;				
+		}
+			.div-palavra{
+				width: 100%;
+				height:1%;	
+			}
+			.div-teclado{
+				width: 100%;
+				height: 99%;
+			}
+			
+			.tecla{
+				font-size:1.5em
+			}
+			.entrada{
+				font-size:0.9em;
+				font-weight:bold;
+			}
+		.dica{
+			width: 100%;
+			height: 35%;			
+		}			
+				.div-dica{				
+				width:100%; 
+				height:70%;
+				}
+				.multimidia {					
+					height:100%;					
+				}
+		
+	}
+			
+			
+	

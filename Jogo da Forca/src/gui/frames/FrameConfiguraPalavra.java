@@ -31,7 +31,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FrameConfigurarPalavra extends JFrame {
+public class FrameConfiguraPalavra extends JFrame {
 
 	/**
 	 * 
@@ -53,7 +53,7 @@ public class FrameConfigurarPalavra extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameConfigurarPalavra(PanelPalavra panelPalavra) {
+	public FrameConfiguraPalavra(PanelPalavra panelPalavra) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 718, 476);
 		setVisible(true);
@@ -224,6 +224,7 @@ public class FrameConfigurarPalavra extends JFrame {
 		buttonRemoverMultimidia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				palavra.setURLMultimidia(null);
+				palavra.setTipoMultimidia(null);
 				textFieldDicaMultimidia.setText(null);
 			}
 		});
@@ -289,7 +290,7 @@ public class FrameConfigurarPalavra extends JFrame {
 		textFieldDicaMultimidia.setText(palavra.getURLMultimidia());
 	}
 	
-	private FrameConfigurarPalavra getThis(){
+	private FrameConfiguraPalavra getThis(){
 		return this;
 	}
 	

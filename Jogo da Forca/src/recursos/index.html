@@ -1,0 +1,63 @@
+<html>
+
+	<head>
+		<title>?tituloPagina</title>		
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta content="True" name="HandheldFriendly">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="viewport" content="width=device-width">
+		<script type = "text/javascript" src ="recursos/script/forcajs.js" ></script>		
+		<link rel ="stylesheet" type="text/css" href="recursos/css/estilo.css" />	
+	</head>
+	
+	<body onload="iniciar()">
+		
+		<div class="container">			
+			
+			<div class="content">	
+				
+				<div class="div-titulo" align="center">
+					<p class="titulo">?tituloJogo<p>
+				</div>	
+				
+				<div class="boneco-chutes">					
+					<div id="divBoneco">
+						<img  id="boneco" class="imagem" src="imagens/b0.png"></img>
+					</div>					
+					<div class="chutes">						
+						<p align="center" class="fase" id="fase"> Fase 1 </p>												
+						<p align="center" class="acertos">Acertos: &nbsp; <b class="acertos" id="acertos">0</b> </p>					
+						<p align="center" class="erros">Erros: &nbsp; <b id="erros" class="erros">0</b> </p> 
+					</div>									
+				</div>
+				
+				<div class="palavra-teclado">					
+						<div id = "divMostraPalavra" class="div-palavra" align ="center" margin="2px"></div>						
+						<div id ="divTeclado" class="div-teclado" align="center"></div>										
+				</div>
+				
+				<div class="dica">
+						<div>							
+							<p align="center" class="dica-textual" id="dicaTextual"> Dica: <p>	
+						</div>
+					<div class="div-dica" align="center">
+						<div align="center" class="multimidia" id="dicaMultimidia">
+						</div>
+					</div>					
+				</div>	
+				
+			</div>		
+			
+		</div>	
+		
+		<div id="modal" class="janelaModal">
+			<div id="_modal">
+				<a href="#fechar" title="fechar" class="fechar" onclick="fecharModal();">x</a>
+				<p id="mensagemModal"></p>
+				
+			</div>			
+		</div>	
+		
+	</body>
+	
+</html>

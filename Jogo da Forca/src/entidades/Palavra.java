@@ -14,7 +14,11 @@ public class Palavra {
 	
 	private String mensagemErrada; //Mensagem ao errar palavra.
 	
-	private int quantidadeDeErrosTolerados;		
+	private int quantidadeDeErrosTolerados;	
+	
+	public Palavra(){
+		setQuantidadeDeErrosTolerados(5);
+	}
 	
 	public String getPalavra() {
 		return palavra;

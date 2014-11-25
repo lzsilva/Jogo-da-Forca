@@ -24,7 +24,7 @@ import java.awt.Font;
 import javax.swing.border.EtchedBorder;
 
 import entidades.Palavra;
-import gui.frames.FrameConfigurarPalavra;
+import gui.frames.FrameConfiguraPalavra;
 import arquivo.filechoose.EscolherArquivo;
 
 import java.awt.event.ActionListener;
@@ -52,7 +52,7 @@ public class DialogTipoMultimidia extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DialogTipoMultimidia(FrameConfigurarPalavra framePai,final Palavra palavra) {
+	public DialogTipoMultimidia(FrameConfiguraPalavra framePai,final Palavra palavra) {
 		
 		super(framePai);
 		super.setModal(true);
@@ -203,18 +203,18 @@ public class DialogTipoMultimidia extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						if(radioAudio.isSelected()){
-							escolha = "audio";							
+							palavra.setTipoMultimidia("audio");							
 						}
 						
 						if(radioVideo.isSelected()){
-							escolha = "video";							
+							palavra.setTipoMultimidia("video");							
 						}
 						
 						if(radioImagem.isSelected()){
-							escolha = "imagem";							
+							palavra.setTipoMultimidia("imagem");							
 						}
 						
-						EscolherArquivo escolherArquivo = new EscolherArquivo(escolha,palavra);
+						EscolherArquivo escolherArquivo = new EscolherArquivo(palavra);
 						getThis().dispose();
 					}
 				});

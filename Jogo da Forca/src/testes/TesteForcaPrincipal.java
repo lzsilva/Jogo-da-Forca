@@ -4,6 +4,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import gui.frames.FramePrincipal;
+import gui.frames.FramePrincipal;
 
 public class TesteForcaPrincipal {
 
