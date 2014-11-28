@@ -12,6 +12,7 @@ public class ControladorDeFase {
 		for(Component componente: painelFase.getComponents()){			
 			if(componente instanceof PanelPalavra){				
 				PanelPalavra painelPalavra = (PanelPalavra) componente;
+				painelPalavra.setaPalavra();
 				fase.addPalavra(painelPalavra.getPalavra());
 			}			
 		}		

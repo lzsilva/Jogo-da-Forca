@@ -123,7 +123,7 @@
 			} 
 			else{	
 				//passou de fase
-				abreModal("<p align='center'>Palavra: "+palavraAtual.toUpperCase()+"</br>Passou de Fase.</p>");
+				abreModal("<p align='center'>Palavra: "+palavraAtual.toUpperCase()+"</br>"+mensagemAoAcertarPalavraAtual+"</br>Passou de Fase.</p>");
 				var fase = document.getElementById("fase");				
 				contadorDePalavra=0;
 				contadorDeFase++;
@@ -157,17 +157,18 @@
 			if(erros>qtdMaxErroAtual){				
 				abreModal("<p align ='center'>"+mensagemAoErrarPalavraAtual+"</p>");
 				resetaPalavra();
-			}
-			else if(erros >= mudarBoneco){
-				//MudarBoneco				
-				var imgBoneco = document.getElementById("boneco");				
-				auxiliaURLBoneco++;				
-				imgBoneco.src="boneco/b"+auxiliaURLBoneco+".png";
-				mudarBoneco = mudarBoneco + fatorIncremento;
-				if(erros ==qtdMaxErroAtual){
-					imgBoneco.src="boneco/b3.png";
+			}			
+				else if(erros==qtdMaxErroAtual){					
+					imgBoneco.src="recursos/bonecos/b3.png";
+					atualizaTelaAcerto();
 				}
-			}
+			
+				else if(erros > mudarBoneco){								
+					var imgBoneco = document.getElementById("boneco");				
+					auxiliaURLBoneco++;				
+					imgBoneco.src="recursos/bonecos/b"+auxiliaURLBoneco+".png";
+					mudarBoneco = mudarBoneco + fatorIncremento;									
+				}
 		}		
 		atulizaTelaAcerto();		
 		for(i=0;i<palavraAtual.length;i++){
@@ -194,15 +195,15 @@
 		dicaTextual.innerHTML = "<align='center'>Dica: "+dicaTextualAtual+"</p>";		
 		if(tipoMultimidiaAtual=='imagem'){				
 			var dicaMultimidia = document.getElementById("dicaMultimidia");
-			dicaMultimidia.innerHTML = "<img class='multimidia' src ="+urlMultimidiaAtual+" </img>";
+			dicaMultimidia.innerHTML = "<img class='multimidia' src =recursos/multimidia/imagens/"+urlMultimidiaAtual+"></img>";
 		}
 		else if(tipoMultimidiaAtual=='video'){
 			var dicaMultimidia = document.getElementById("dicaMultimidia");
-			dicaMultimidia.innerHTML = " <video class='video' controls > <source src="+urlMultimidiaAtual+"></source></video>";
+			dicaMultimidia.innerHTML = " <video class='video' controls > <source src=recursos/multimidia/videos/"+urlMultimidiaAtual+"></source></video>";
 		}
 		else if(tipoMultimidiaAtual=='audio'){
 			var dicaMultimidia = document.getElementById("dicaMultimidia");
-			dicaMultimidia.innerHTML = "<br/> <audio class='audio' controls > <source src="+urlMultimidiaAtual+"></source></audio>";
+			dicaMultimidia.innerHTML = "<br/> <audio class='audio' controls > <source src=recursos/multimidia/audios/"+urlMultimidiaAtual+"></source></audio>";
 		}
 		else {
 			var dicaMultimidia = document.getElementById("dicaMultimidia");
@@ -227,7 +228,7 @@
 	function reset(){		
 		erros = 0;
 		acertos = 0;
-		document.getElementById("boneco").src="imagens/b0.png";
+		document.getElementById("boneco").src="recursos/bonecos/b0.png";
 		auxiliaURLBoneco = 0;
 		mudarBoneco = fatorIncremento;	
 	}

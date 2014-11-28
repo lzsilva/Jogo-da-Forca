@@ -107,6 +107,11 @@ public class PanelPalavra extends JPanel {
 		return this;
 	}
 	
+	public void setaPalavra(){
+		palavra.setPalavra(textFieldPalavra.getText());
+		palavra.setDica(textFieldDica.getText());
+	}
+	
 	/*CLASSES INTERNAR PARA TRATAMENTO DE EVETO*/	
 	
 	private class Configurar implements ActionListener{
@@ -114,8 +119,7 @@ public class PanelPalavra extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			palavra.setPalavra(textFieldPalavra.getText());
-			palavra.setDica(textFieldDica.getText());
+			setaPalavra();
 			FrameConfiguraPalavra frameConfigurarPalavra = new FrameConfiguraPalavra(getThis()); 
 		}
 	

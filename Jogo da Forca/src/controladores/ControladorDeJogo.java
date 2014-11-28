@@ -21,8 +21,7 @@ public class ControladorDeJogo {
 		this.tabbed = tabbed;
 		jogo = new Jogo();
 		controladorDeFase = new ControladorDeFase();
-	}
-	
+	}	
 	
 	
 	public Jogo getJogo(){		

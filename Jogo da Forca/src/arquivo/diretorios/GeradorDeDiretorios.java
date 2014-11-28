@@ -34,7 +34,7 @@ public class GeradorDeDiretorios {
 			String stringPastaAudios = stringPastaMultimidia+"/audios";
 			String stringPastaImagens = stringPastaMultimidia+"/imagens";
 			String stringPastaVideos = stringPastaMultimidia+"/videos";			
-			String stringPastaBoneco = stringPastaRecursos+"/boneco";
+			String stringPastaBoneco = stringPastaRecursos+"/bonecos";
 			
 			File raiz = new File(stringPastaRaiz);
 			File recursos = new File(stringPastaRecursos);
@@ -60,7 +60,7 @@ public class GeradorDeDiretorios {
 			hashDiretorios.put("recursos", recursos);
 			hashDiretorios.put("css",css);		
 			hashDiretorios.put("script",script );
-			hashDiretorios.put("boneco", boneco);
+			hashDiretorios.put("bonecos", boneco);
 			hashDiretorios.put("multimidia",multimidia);
 			hashDiretorios.put("audios", audios);
 			hashDiretorios.put("imagens",imagens);

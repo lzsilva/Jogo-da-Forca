@@ -48,8 +48,10 @@ public class FramePrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public FramePrincipal() {
+		
 		setBounds(0, 0, 900, 600);
 		setVisible(true);		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		toolBar = new JToolBar();
 		
 		estilo = new Estilo();
@@ -124,6 +126,8 @@ public class FramePrincipal extends JFrame {
 		toolBar.add(buttonVerificarSaida);
 		buttonAddPalavra.addActionListener(new NovaPalavra());
 		getContentPane().setLayout(groupLayout);
+		
+		toolBar.setFloatable(false);
 
 		addFase();
 

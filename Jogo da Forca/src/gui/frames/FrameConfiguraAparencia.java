@@ -82,9 +82,7 @@ public class FrameConfiguraAparencia extends JFrame {
 		
 		botaoFundoPagina = new JButton("Escolher");
 		botaoFundoPagina.setFont(new Font("Arial", Font.PLAIN, 12));
-		botaoFundoPagina.addActionListener(new SetaCor());
-		
-		
+		botaoFundoPagina.addActionListener(new SetaCor());		
 		
 		
 		

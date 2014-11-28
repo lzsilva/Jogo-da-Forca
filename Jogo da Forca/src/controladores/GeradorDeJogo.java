@@ -3,8 +3,11 @@ package controladores;
 import java.io.File;
 import java.util.HashMap;
 
+import arquivo.GeradorDeBonecos;
 import arquivo.GeradorDeCSS;
 import arquivo.GeradorDeHTML;
+import arquivo.GeradorDeMultimidia;
+import arquivo.GeradorDeScorm;
 import arquivo.GeradorDeScript;
 import arquivo.diretorios.GeradorDeDiretorios;
 import entidades.Estilo;
@@ -19,9 +22,13 @@ public class GeradorDeJogo {
 		GeradorDeDiretorios geradorDeDiretorios = new GeradorDeDiretorios();
 		HashMap<String,File> hash =  geradorDeDiretorios.getDiretorios();
 		if (hash!=null){
-			GeradorDeScript script = new GeradorDeScript(jogo,hash.get("script"));
-			GeradorDeHTML htlm = new GeradorDeHTML(hash.get("raiz"));
-			GeradorDeCSS css = new GeradorDeCSS(estilo, hash.get("css"));
+			new GeradorDeScorm(jogo,hash.get("raiz"));
+			new GeradorDeMultimidia(jogo, hash.get("multimidia"));
+			new GeradorDeScript(jogo,hash.get("script"));
+			new GeradorDeHTML(hash.get("raiz"));
+			new GeradorDeCSS(estilo, hash.get("css"));
+			new GeradorDeBonecos(hash.get("bonecos"));
+						
 		}
 	}
 		

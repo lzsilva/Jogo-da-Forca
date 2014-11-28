@@ -35,9 +35,18 @@ public class GeradorDeScript {
 			ArrayList<Palavra> palavras = f.getPalavras();
 			
 			for (Palavra p : palavras) {
+				
+				String multimidia = "";
+				if(p.getURLMultimidia()!=null){
+					File file = new File(p.getURLMultimidia());
+					multimidia = file.getName();
+					multimidia = multimidia.replace(" ","");
+				}
+				
 				stJogo = stJogo + "var palavra" + contadorPalavras
 						+ " = new Palavra('" + p.getPalavra() +"','"
-						+ p.getDica() +"',"+p.getQuantidadeDeErrosTolerados()+");\n\t\t";
+						+ p.getDica() +"',"+p.getQuantidadeDeErrosTolerados()+",'"+p.getTipoMultimidia()+"','"
+						+multimidia+"','"+p.getMensagemCerta()+"','"+p.getMensagemErrada()+"');\n\t\t";
 				stJogo = stJogo+"fase"+contadorFases+".arrayPalavra.push("+"palavra"+contadorPalavras+");\n\t\t";
 				contadorPalavras++;
 			}
