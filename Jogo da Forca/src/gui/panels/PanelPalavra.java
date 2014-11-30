@@ -14,11 +14,16 @@ import javax.swing.border.LineBorder;
 import entidades.Palavra;
 import gui.dialogs.DialogTipoMultimidia;
 import gui.frames.FrameConfiguraPalavra;
+import gui.frames.FramePrincipal;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class PanelPalavra extends JPanel {
 	private JTextField textFieldPalavra;
@@ -33,22 +38,36 @@ public class PanelPalavra extends JPanel {
 	public PanelPalavra(final PainelFase painelFase) {
 		setBorder(null);		
 		textFieldPalavra = new JTextField();
+		textFieldPalavra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textFieldPalavra.setColumns(10);
 		setMaximumSize(new Dimension(700, 100));
 		
 		palavra = new Palavra();
 		
 		JLabel lblPalavra = new JLabel("Palavra:");
+		lblPalavra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		textFieldDica = new JTextField();
+		textFieldDica.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textFieldDica.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Pista:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		buttonConfigurar = new JButton("Configurar");
+		buttonConfigurar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconBotaoConfigurar = new ImageIcon((FramePrincipal.class.getResource("/icones/configura3.png")));
+		Image imagemBotaoConfigurar = iconBotaoConfigurar.getImage();
+		iconBotaoConfigurar = new ImageIcon(imagemBotaoConfigurar.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));		
+		buttonConfigurar.setIcon(iconBotaoConfigurar);		
 		buttonConfigurar.addActionListener(new Configurar());
 		
 		JButton buttonDeletar = new JButton("Deletar");
+		buttonDeletar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconBotaoDeletar = new ImageIcon((FramePrincipal.class.getResource("/icones/remove.png")));
+		Image imagemBotaoDeletar = iconBotaoDeletar.getImage();
+		iconBotaoDeletar = new ImageIcon(imagemBotaoDeletar.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));		
+		buttonDeletar.setIcon(iconBotaoDeletar);
 		buttonDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				painelFase.remove(getThis());

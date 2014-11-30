@@ -81,10 +81,14 @@ public class GeradorDeScorm {
 										+ "</resource>"; 
 					}
 					else if(p.getTipoMultimidia().equalsIgnoreCase("video")){
-						userResources= userResources + "<file href=\"recursos/multimidia/videos/"+nomeArquivo+"\" />\n";
+						userResources = userResources + "<resource identifier=\""+identifier+"\" type=\"webcontent\" adlcp:scormtype=\"asset\""
+								+ " href=\"recursos/multimidia/videos/"+nomeArquivo+"\" >\n \t <file href=\"recursos/multimidia/imagens/"+nomeArquivo+"\"/>\n"
+										+ "</resource>"; 
 					}
 					else if(p.getTipoMultimidia().equalsIgnoreCase("audio")){
-						userResources= userResources + "<file href=\"recursos/multimidia/audios/"+nomeArquivo+"\" />\n";
+						userResources = userResources + "<resource identifier=\""+identifier+"\" type=\"webcontent\" adlcp:scormtype=\"asset\""
+								+ " href=\"recursos/multimidia/audios/"+nomeArquivo+"\" >\n \t <file href=\"recursos/multimidia/imagens/"+nomeArquivo+"\"/>\n"
+										+ "</resource>"; 
 					}
 				}
 			}

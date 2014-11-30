@@ -6,7 +6,9 @@ import gui.panels.PanelPalavra;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -54,6 +56,7 @@ public class FrameConfiguraPalavra extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameConfiguraPalavra(PanelPalavra panelPalavra) {
+		setTitle("Configurar Palavra");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 718, 476);
 		setVisible(true);
@@ -173,14 +176,14 @@ public class FrameConfiguraPalavra extends JFrame {
 								.addComponent(lblNewLabel_1))
 							.addGap(64))
 						.addGroup(gl_panelCentral.createSequentialGroup()
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
 							.addContainerGap())))
 		);
 		gl_panelCentral.setVerticalGroup(
 			gl_panelCentral.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelCentral.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_panelCentral.createSequentialGroup()
 					.addGap(33)
@@ -209,18 +212,27 @@ public class FrameConfiguraPalavra extends JFrame {
 							.addGap(18)
 							.addComponent(lblQuantidadeDeErros)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textFieldMensagemErro, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textFieldMensagemErro, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(42))
 						.addGroup(gl_panelCentral.createSequentialGroup()
 							.addGap(37)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)))
-					.addGap(42))
+							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
 		
-		buttonAddMultimidia = new JButton("DM");
+		buttonAddMultimidia = new JButton();
+		ImageIcon iconMultimidia = new ImageIcon((FramePrincipal.class.getResource("/icones/multimidia.png")));
+		Image imageMultimidia = iconMultimidia.getImage();
+		iconMultimidia = new ImageIcon(imageMultimidia.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+		buttonAddMultimidia.setIcon(iconMultimidia);
 		buttonAddMultimidia.addActionListener(new Multimidia());
 		buttonAddMultimidia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton buttonRemoverMultimidia = new JButton("RM");
+		JButton buttonRemoverMultimidia = new JButton();
+		ImageIcon iconRemoverMultimidia = new ImageIcon((FramePrincipal.class.getResource("/icones/remove.png")));
+		Image imagemRemoverMultimidia = iconRemoverMultimidia.getImage();
+		iconRemoverMultimidia = new ImageIcon(imagemRemoverMultimidia.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+		buttonRemoverMultimidia.setIcon(iconRemoverMultimidia);
 		buttonRemoverMultimidia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				palavra.setURLMultimidia(null);
@@ -235,7 +247,7 @@ public class FrameConfiguraPalavra extends JFrame {
 		textFieldDicaMultimidia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldDicaMultimidia.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Adicionar Multim\u00EDdia");
+		JLabel lblNewLabel_2 = new JLabel("Adicionar Multim\u00EDdia:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblNewLabel_3 = new JLabel("Remover Multim\u00EDdia");
@@ -246,33 +258,37 @@ public class FrameConfiguraPalavra extends JFrame {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(textFieldDicaMultimidia, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-							.addContainerGap())
+						.addComponent(textFieldDicaMultimidia, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel_2)
 								.addComponent(lblNewLabel_3))
-							.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(buttonAddMultimidia)
-								.addComponent(buttonRemoverMultimidia))
-							.addContainerGap())))
+							.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(buttonRemoverMultimidia, 0, 0, Short.MAX_VALUE)
+								.addComponent(buttonAddMultimidia, GroupLayout.PREFERRED_SIZE, 63, Short.MAX_VALUE))))
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(19)
 					.addComponent(textFieldDicaMultimidia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(21)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(buttonAddMultimidia))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(buttonRemoverMultimidia))
-					.addContainerGap(17, Short.MAX_VALUE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(21)
+							.addComponent(buttonAddMultimidia, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(35)
+							.addComponent(lblNewLabel_2)))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(18)
+							.addComponent(buttonRemoverMultimidia, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(30)
+							.addComponent(lblNewLabel_3)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		panelCentral.setLayout(gl_panelCentral);

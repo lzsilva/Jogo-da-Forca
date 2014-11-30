@@ -1,5 +1,6 @@
 package gui.frames;
 
+import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -52,82 +54,80 @@ public class FrameConfiguraAparencia extends JFrame {
 	private JButton botaoHover;
 
 	private JButton botaoFundoPagina;
+	private JPanel panel_12;
 	
 	public FrameConfiguraAparencia(Estilo estilo) {
+		setTitle("Configurar Apar\u00EAncia");
 		
-		setSize(815,480);
+		setSize(815,525);
 		
 		this.estilo = estilo;
+		
+		ImageIcon mudarCor = new ImageIcon((FramePrincipal.class.getResource("/icones/estilo.png")));
+		Image imagemBotaoConfigurarAparencia = mudarCor.getImage();
+		mudarCor = new ImageIcon(imagemBotaoConfigurarAparencia.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)); 	
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Cores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 781, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(59)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(73, Short.MAX_VALUE))
+					.addGap(19)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		
-		JLabel lblCorDeFundo = new JLabel("Cor de fundo da p\u00E1gina:");
-		lblCorDeFundo.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		botaoFundoPagina = new JButton("Escolher");
-		botaoFundoPagina.setFont(new Font("Arial", Font.PLAIN, 12));
-		botaoFundoPagina.addActionListener(new SetaCor());		
 		
 		
+		JPanel panel_11 = new JPanel();
 		
-		botaoCorTitulo = new JButton("Escolher");
-		botaoCorTitulo.addActionListener(new SetaCor());
+		panel_12 = new JPanel();
 		
-		botaoLabelFase = new JButton("Escolher");
-		botaoLabelFase.addActionListener(new SetaCor());
 		
-		botaoAcertos = new JButton("Escolher");
-		botaoAcertos.addActionListener(new SetaCor());
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel_11, GroupLayout.PREFERRED_SIZE, 317, GroupLayout.PREFERRED_SIZE)
+					.addGap(66)
+					.addComponent(panel_12, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+					.addGap(55))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(23)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panel_12, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+						.addComponent(panel_11, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
+					.addContainerGap(104, Short.MAX_VALUE))
+		);
 		
-		botaoErros = new JButton("Escolher");
-		botaoErros.addActionListener(new SetaCor());
+		JLabel lblCorDasLetras = new JLabel("Cor das letras: ");
+		lblCorDasLetras.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		botaoCorLetrasPalavra = new JButton("Escolher");
+		botaoCorLetrasPalavra = new JButton("");
+		botaoCorLetrasPalavra.setIcon(mudarCor);
 		botaoCorLetrasPalavra.addActionListener(new SetaCor());
-		
-		botaoCorFundoTeclado = new JButton("Escolher");
-		botaoCorFundoTeclado.addActionListener(new SetaCor());
-		
-		botaoCorLetraTecla = new JButton("Escolher");
-		botaoCorLetraTecla.addActionListener(new SetaCor());
-		
-		botaoCorDica = new JButton("Escolher");
-		botaoCorDica.addActionListener(new SetaCor());
-		
-		botaoHover = new JButton("Escolher");
-		botaoHover.addActionListener(new SetaCor());
-		
-		panel_1 = new JPanel();
-		
-		panel_2 = new JPanel();
-		
-		
-		panel_3 = new JPanel();
-		
-		
-		panel_4 = new JPanel();
-		
-		
-		panel_5 = new JPanel();
 		
 		
 		panel_6 = new JPanel();
+		
+		JLabel lblCorFundoDo = new JLabel("Cor do fundo teclado:");
+		lblCorFundoDo.setFont(new Font("Arial", Font.PLAIN, 12));
+		
+		botaoCorFundoTeclado = new JButton("");
+		botaoCorFundoTeclado.setIcon(mudarCor);
+		botaoCorFundoTeclado.addActionListener(new SetaCor());
 		
 		
 		panel_7 = new JPanel();
@@ -135,32 +135,9 @@ public class FrameConfiguraAparencia extends JFrame {
 		
 		panel_8 = new JPanel();
 		
-		
-		panel_9 = new JPanel();
-		
-		
-		panel_10 = new JPanel();
-		
-		setaCorPanels();
-		
-		
-		JLabel lblCorDoTtulo = new JLabel("Cor do t\u00EDtulo:");
-		lblCorDoTtulo.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		JLabel lblCorLabelFase = new JLabel("Cor label fase:");
-		lblCorLabelFase.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		JLabel lblCorDosAcertos = new JLabel("Cor dos acertos:");
-		lblCorDosAcertos.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		JLabel lblCordDosErros = new JLabel("Cord dos erros:");
-		lblCordDosErros.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		JLabel lblCorDasLetras = new JLabel("Cor das letras: ");
-		lblCorDasLetras.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		JLabel lblCorFundoDo = new JLabel("Cor do fundo teclado:");
-		lblCorFundoDo.setFont(new Font("Arial", Font.PLAIN, 12));
+		botaoCorLetraTecla = new JButton("");
+		botaoCorLetraTecla.setIcon(mudarCor);
+		botaoCorLetraTecla.addActionListener(new SetaCor());
 		
 		JLabel lblCorDaLetra = new JLabel("Cor da letra do teclado:");
 		lblCorDaLetra.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -168,146 +145,265 @@ public class FrameConfiguraAparencia extends JFrame {
 		JLabel lblCorDaDica = new JLabel("Cor da dica:");
 		lblCorDaDica.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		JLabel lblCorDestaqueDa = new JLabel("Cor destaque da tecla:");
+		botaoCorDica = new JButton("");
+		botaoCorDica.setIcon(mudarCor);
+		botaoCorDica.addActionListener(new SetaCor());
+		
+		
+		panel_9 = new JPanel();
+		
+		JLabel lblCorDestaqueDa = new JLabel("<html>Cor ao passar o mouse:");
 		lblCorDestaqueDa.setFont(new Font("Arial", Font.PLAIN, 12));
 		
+		botaoHover = new JButton("");
+		botaoHover.setIcon(mudarCor);
+		botaoHover.addActionListener(new SetaCor());
 		
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(42)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblCorDeFundo)
-						.addComponent(lblCorDoTtulo, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorLabelFase, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorDosAcertos, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCordDosErros, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(botaoCorTitulo, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-								.addComponent(botaoFundoPagina, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		
+		panel_10 = new JPanel();
+		GroupLayout gl_panel_12 = new GroupLayout(panel_12);
+		gl_panel_12.setHorizontalGroup(
+			gl_panel_12.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_12.createSequentialGroup()
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblCorFundoDo, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoErros, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addComponent(botaoCorFundoTeclado, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblCorDasLetras, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoAcertos, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addComponent(botaoCorLetrasPalavra))
+						.addGroup(Alignment.TRAILING, gl_panel_12.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblCorDaLetra, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoLabelFase, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addComponent(botaoCorLetraTecla)))
+					.addGap(10)
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_6, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_8, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(78, Short.MAX_VALUE))
+				.addGroup(gl_panel_12.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(Alignment.LEADING, gl_panel_12.createSequentialGroup()
+							.addComponent(lblCorDestaqueDa, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblCorDasLetras, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorFundoDo, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorDaLetra, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorDaDica, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorDestaqueDa, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoCorLetrasPalavra, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addComponent(botaoHover, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, gl_panel_12.createSequentialGroup()
+							.addComponent(lblCorDaDica, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(panel_6, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoCorFundoTeclado, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoCorLetraTecla, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panel_8, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoCorDica, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panel_9, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(botaoHover, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panel_10, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(39, Short.MAX_VALUE))
+							.addComponent(botaoCorDica)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_9, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_10, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(78, Short.MAX_VALUE))
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(37)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(panel_6, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(lblCorDeFundo)
-											.addComponent(botaoFundoPagina, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoCorTitulo)
-											.addComponent(lblCorDoTtulo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoLabelFase)
-											.addComponent(lblCorLabelFase, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoAcertos)
-											.addComponent(lblCorDosAcertos, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoErros)
-											.addComponent(lblCordDosErros, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(botaoCorLetrasPalavra)
-										.addComponent(lblCorDasLetras, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-											.addComponent(botaoCorFundoTeclado)
-											.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblCorFundoDo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoCorLetraTecla)
-											.addComponent(lblCorDaLetra, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_8, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoCorDica)
-											.addComponent(lblCorDaDica, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_9, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel_10, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(botaoHover)
-											.addComponent(lblCorDestaqueDa, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)))))
-							.addGap(87))))
+		gl_panel_12.setVerticalGroup(
+			gl_panel_12.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_12.createSequentialGroup()
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGap(25)
+							.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(panel_6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(botaoCorLetrasPalavra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGap(38)
+							.addComponent(lblCorDasLetras)))
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGap(31)
+							.addComponent(lblCorFundoDo)
+							.addGap(43)
+							.addComponent(lblCorDaLetra))
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+								.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addComponent(botaoCorFundoTeclado))
+							.addGap(18)
+							.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+								.addComponent(panel_8, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addComponent(botaoCorLetraTecla))))
+					.addGap(18)
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblCorDaDica))
+						.addGroup(gl_panel_12.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(panel_9, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(botaoCorDica, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(23)
+					.addGroup(gl_panel_12.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblCorDestaqueDa)
+						.addGroup(gl_panel_12.createSequentialGroup()
+							.addGroup(gl_panel_12.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(panel_10, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(botaoHover, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(207))
 		);
+		panel_12.setLayout(gl_panel_12);
+		
+		JLabel lblCorDeFundo = new JLabel("Cor de fundo da p\u00E1gina:");
+		lblCorDeFundo.setFont(new Font("Arial", Font.PLAIN, 12));
+		
+		botaoFundoPagina = new JButton("");
+		botaoFundoPagina.setIcon(mudarCor);
+		botaoFundoPagina.setFont(new Font("Arial", Font.PLAIN, 12));
+		botaoFundoPagina.addActionListener(new SetaCor());
+		
+		panel_1 = new JPanel();
+		
+		
+		JLabel lblCorDoTtulo = new JLabel("Cor do t\u00EDtulo:");
+		lblCorDoTtulo.setFont(new Font("Arial", Font.PLAIN, 12));
+		
+		
+		
+		botaoCorTitulo = new JButton("");
+		botaoCorTitulo.setIcon(mudarCor);
+		botaoCorTitulo.addActionListener(new SetaCor());
+		
+		panel_2 = new JPanel();
+		
+		JLabel lblCorLabelFase = new JLabel("Cor label fase:");
+		lblCorLabelFase.setFont(new Font("Arial", Font.PLAIN, 12));
+		
+		botaoLabelFase = new JButton("");
+		botaoLabelFase.setIcon(mudarCor);
+		botaoLabelFase.addActionListener(new SetaCor());
+		
+		
+		panel_3 = new JPanel();
+		
+		JLabel lblCorDosAcertos = new JLabel("Cor dos acertos:");
+		lblCorDosAcertos.setFont(new Font("Arial", Font.PLAIN, 12));
+		
+		botaoAcertos = new JButton("");
+		botaoAcertos.setIcon(mudarCor);
+		botaoAcertos.addActionListener(new SetaCor());
+		
+		
+		panel_4 = new JPanel();
+		
+		
+		panel_5 = new JPanel();
+		
+		botaoErros = new JButton("");
+		botaoErros.setIcon(mudarCor);
+		botaoErros.addActionListener(new SetaCor());
+		
+		JLabel lblCordDosErros = new JLabel("Cord dos erros:");
+		lblCordDosErros.setFont(new Font("Arial", Font.PLAIN, 12));
+		GroupLayout gl_panel_11 = new GroupLayout(panel_11);
+		gl_panel_11.setHorizontalGroup(
+			gl_panel_11.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_11.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addComponent(lblCorDeFundo)
+							.addGap(18)
+							.addComponent(botaoFundoPagina)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panel_11.createSequentialGroup()
+									.addComponent(lblCorDosAcertos, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(botaoAcertos))
+								.addGroup(Alignment.LEADING, gl_panel_11.createSequentialGroup()
+									.addGap(4)
+									.addGroup(gl_panel_11.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_panel_11.createSequentialGroup()
+											.addComponent(lblCorLabelFase, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(botaoLabelFase))
+										.addGroup(gl_panel_11.createSequentialGroup()
+											.addComponent(lblCorDoTtulo, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(botaoCorTitulo))))
+								.addGroup(gl_panel_11.createSequentialGroup()
+									.addComponent(lblCordDosErros, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(botaoErros)))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+								.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+								.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+								.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 4, Short.MAX_VALUE)))
+					.addGap(28))
+		);
+		gl_panel_11.setVerticalGroup(
+			gl_panel_11.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_11.createSequentialGroup()
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(23)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(botaoFundoPagina, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(34)
+							.addComponent(lblCorDeFundo)))
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(29)
+							.addComponent(lblCorDoTtulo))
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(botaoCorTitulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(botaoLabelFase, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(31)
+							.addComponent(lblCorLabelFase)))
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_11.createSequentialGroup()
+									.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(gl_panel_11.createSequentialGroup()
+									.addComponent(botaoAcertos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED))))
+						.addGroup(Alignment.TRAILING, gl_panel_11.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblCorDosAcertos)
+							.addGap(12)))
+					.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_11.createParallelGroup(Alignment.LEADING)
+								.addComponent(botaoErros)
+								.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel_11.createSequentialGroup()
+							.addGap(31)
+							.addComponent(lblCordDosErros)))
+					.addGap(121))
+		);
+		panel_11.setLayout(gl_panel_11);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
+		
+		setaCorPanels();
 	
 	}
 	

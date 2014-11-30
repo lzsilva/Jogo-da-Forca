@@ -10,6 +10,7 @@ import gui.panels.PanelPalavra;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,17 +31,21 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import controladores.ControladorDeJogo;
 import controladores.GeradorDeJogo;
 
+import javax.swing.ImageIcon;
+import java.awt.Font;
+
 public class FramePrincipal extends JFrame {
 
 	private JPanel panelCentral;
 	private JToolBar toolBar;
-	private JButton buttonAddFase;
-	private JButton buttonAddPalavra;
+	private JButton botaoAddFase;
+	private JButton botaoAddPalavra;
 	private JScrollPane scrollPane;
 	private JTabbedPane tabbedPane;
 	private Estilo estilo;
@@ -48,7 +53,7 @@ public class FramePrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public FramePrincipal() {
-		
+		setTitle("Editor de Jogo da Forca");
 		setBounds(0, 0, 900, 600);
 		setVisible(true);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,33 +63,24 @@ public class FramePrincipal extends JFrame {
 		
 		panelCentral = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(
-								groupLayout
-										.createParallelGroup(Alignment.LEADING)
-										.addComponent(panelCentral,
-												GroupLayout.DEFAULT_SIZE, 684,
-												Short.MAX_VALUE)
-										.addComponent(toolBar,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE,
-								284, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(null);
@@ -110,24 +106,63 @@ public class FramePrincipal extends JFrame {
 		scrollPane.setViewportView(tabbedPane);
 		panelCentral.setLayout(gl_panelCentral);
 
-		buttonAddFase = new JButton("Adicionar Fase");
-		buttonAddFase.addActionListener(new NovaFase());
-		toolBar.add(buttonAddFase);
-
-		buttonAddPalavra = new JButton("Adicionar Palavra");
-		toolBar.add(buttonAddPalavra);
-
-		JButton buttonVerificarSaida = new JButton("SAIDA");
-		buttonVerificarSaida.addActionListener(new Saida());
+		botaoAddFase = new JButton("Adicionar Fase");
+		botaoAddFase.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JButton configuraAparencia = new JButton("Configurar Apar\u00EAncia");
-		configuraAparencia.addActionListener(new ConfiguraAparencia());
-		toolBar.add(configuraAparencia);
-		toolBar.add(buttonVerificarSaida);
-		buttonAddPalavra.addActionListener(new NovaPalavra());
+		ImageIcon iconBotaoAddFase = new ImageIcon((FramePrincipal.class.getResource("/icones/novaFase.png")));
+		Image imagemBotaoAddFase = iconBotaoAddFase.getImage();
+		iconBotaoAddFase = new ImageIcon(imagemBotaoAddFase.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)); 
+		botaoAddFase.setIcon(iconBotaoAddFase);
+		ajustaBotao(botaoAddFase);
+		botaoAddFase.addActionListener(new NovaFase());
+		toolBar.add(botaoAddFase);		
+		
+	
+		
+		botaoAddPalavra = new JButton("Adicionar Palavra");
+		botaoAddPalavra.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconBotaoAddPalavra = new ImageIcon((FramePrincipal.class.getResource("/icones/novaPalavra.png")));
+		Image imagemBotaoAddPalavra = iconBotaoAddPalavra.getImage();
+		iconBotaoAddPalavra = new ImageIcon(imagemBotaoAddPalavra.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)); 		
+		ajustaBotao(botaoAddPalavra);
+		botaoAddPalavra.setIcon(iconBotaoAddPalavra);
+		toolBar.add(botaoAddPalavra);
+
+		JButton botaoCriaJogo = new JButton("Criar Jogo");
+		botaoCriaJogo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconBotaoCriaJogo = new ImageIcon((FramePrincipal.class.getResource("/icones/play.png")));
+		Image imagemBotaoCriaJogo = iconBotaoCriaJogo.getImage();
+		iconBotaoCriaJogo = new ImageIcon(imagemBotaoCriaJogo.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)); 		
+		ajustaBotao(botaoCriaJogo);
+		botaoCriaJogo.setIcon(iconBotaoCriaJogo);
+		botaoCriaJogo.setIcon(new ImageIcon(FramePrincipal.class.getResource("/icones/play.png")));
+		botaoCriaJogo.addActionListener(new CriarJogo());
+		
+		JButton botaoConfigurarAparência = new JButton("Configurar Apar\u00EAncia");
+		botaoConfigurarAparência.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconBotaoConfigurarAparencia = new ImageIcon((FramePrincipal.class.getResource("/icones/estilo.png")));
+		Image imagemBotaoConfigurarAparencia = iconBotaoConfigurarAparencia.getImage();
+		iconBotaoConfigurarAparencia = new ImageIcon(imagemBotaoConfigurarAparencia.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)); 		
+		ajustaBotao(botaoConfigurarAparência);
+		botaoConfigurarAparência.setIcon(iconBotaoConfigurarAparencia);
+		botaoConfigurarAparência.addActionListener(new ConfiguraAparencia());
+		toolBar.add(botaoConfigurarAparência);
+		toolBar.add(botaoCriaJogo);
+		botaoAddPalavra.addActionListener(new NovaPalavra());
 		getContentPane().setLayout(groupLayout);
 		
 		toolBar.setFloatable(false);
+		
+		JButton botaoCriaPacoteScorm = new JButton("Criar Pacote Scorm");
+		botaoCriaPacoteScorm.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ImageIcon iconPacoteScorm = new ImageIcon((FramePrincipal.class.getResource("/icones/scorm.png")));
+		Image imagemPacoteScorm = iconPacoteScorm.getImage();
+		iconPacoteScorm = new ImageIcon(imagemPacoteScorm.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)); 		
+		ajustaBotao(botaoCriaPacoteScorm);
+		botaoCriaPacoteScorm.setIcon(iconPacoteScorm);
+		botaoCriaPacoteScorm.addActionListener(new CriarPacoteScorm());
+		
+		toolBar.add(botaoCriaPacoteScorm);
 
 		addFase();
 
@@ -177,6 +212,13 @@ public class FramePrincipal extends JFrame {
 		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(painel),
 				getTitlePanel(tabbedPane, painel, "Fase "));
 	}
+	
+	//Método ajusta botao
+	
+	private void ajustaBotao(JButton botao){
+		botao.setVerticalTextPosition(SwingConstants.BOTTOM);
+		botao.setHorizontalTextPosition(SwingConstants.CENTER);
+	}
 
 	/* CLASSES INTERNAS PARA TRATAMENTO DE EVENTOS */
 
@@ -204,14 +246,27 @@ public class FramePrincipal extends JFrame {
 		}
 	}
 
-	private class Saida implements ActionListener {
+	private class CriarJogo implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			ControladorDeJogo controlador = new ControladorDeJogo(tabbedPane);			
 			Jogo jogo = controlador.getJogo();
-			GeradorDeJogo geradorDeJogo = new GeradorDeJogo(jogo,estilo);		
+			GeradorDeJogo geradorDeJogo = new GeradorDeJogo(jogo,estilo);
+			geradorDeJogo.criaJogo();
+		}
+
+	}
+	
+	private class CriarPacoteScorm implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			ControladorDeJogo controlador = new ControladorDeJogo(tabbedPane);			
+			Jogo jogo = controlador.getJogo();
+			GeradorDeJogo geradorDeJogo = new GeradorDeJogo(jogo,estilo);
+			geradorDeJogo.criaPacoteScorm();
 		}
 
 	}
