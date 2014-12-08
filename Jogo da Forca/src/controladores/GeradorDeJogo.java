@@ -1,8 +1,10 @@
 package controladores;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import arquivo.Compactador;
 import arquivo.GeradorDeBonecos;
 import arquivo.GeradorDeCSS;
 import arquivo.GeradorDeHTML;
@@ -18,28 +20,20 @@ public class GeradorDeJogo {
 	private Jogo jogo;
 	private Estilo estilo;
 	private HashMap<String, File> hash;;
+	
 	public GeradorDeJogo(Jogo jogo, Estilo estilo){
 		this.jogo = jogo;
-		this.estilo = estilo;
-		
+		this.estilo = estilo;		
 		GeradorDeDiretorios geradorDeDiretorios = new GeradorDeDiretorios();
-		hash =  geradorDeDiretorios.getDiretorios();
-		
-		if (hash!=null){
-			new GeradorDeScorm(jogo,hash.get("raiz"));
-			new GeradorDeMultimidia(jogo, hash.get("multimidia"));
-			new GeradorDeScript(jogo,hash.get("script"));
-			new GeradorDeHTML(hash.get("raiz"));
-			new GeradorDeCSS(estilo, hash.get("css"));
-			new GeradorDeBonecos(hash.get("bonecos"));						
-		}
+		hash =  geradorDeDiretorios.getDiretorios();	
+	
 	}
 	
 	public void criaJogo(){
 		if (hash!=null){			
 			new GeradorDeMultimidia(jogo, hash.get("multimidia"));
 			new GeradorDeScript(jogo,hash.get("script"));
-			new GeradorDeHTML(hash.get("raiz"));
+			new GeradorDeHTML(hash.get("raiz"),jogo.getTitulo());
 			new GeradorDeCSS(estilo, hash.get("css"));
 			new GeradorDeBonecos(hash.get("bonecos"));						
 		}		
@@ -50,9 +44,16 @@ public class GeradorDeJogo {
 			new GeradorDeScorm(jogo,hash.get("raiz"));
 			new GeradorDeMultimidia(jogo, hash.get("multimidia"));
 			new GeradorDeScript(jogo,hash.get("script"));
-			new GeradorDeHTML(hash.get("raiz"));
+			new GeradorDeHTML(hash.get("raiz"),jogo.getTitulo());
 			new GeradorDeCSS(estilo, hash.get("css"));
-			new GeradorDeBonecos(hash.get("bonecos"));						
+			new GeradorDeBonecos(hash.get("bonecos"));
+			Compactador compactador = new Compactador();
+			try {
+				compactador.zip(hash.get("raiz"),new File("C:/Users/Luiz/Desktop/neo2.zip"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}		
 	}
 		

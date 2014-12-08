@@ -10,7 +10,7 @@ public class FiltroImagem extends FileFilter {
 	public boolean accept(File file) {
 		// TODO Auto-generated method stub
 		return file.isDirectory() || file.getName().toLowerCase().endsWith(".png") ||  file.getName().toLowerCase().endsWith(".jpeg")
-				|| file.getName().toLowerCase().endsWith(".gif");
+				|| file.getName().toLowerCase().endsWith(".gif") || file.getName().toLowerCase().endsWith(".jpg");
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package arquivo;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import controladores.GeradorDeIdentificadores;
@@ -11,17 +12,20 @@ import entidades.Palavra;
 public class GeradorDeScorm {
 	
 	private File leitura;
-	private File saida;
+	private File escrita;
 	private String arquivoLido;
 	private Jogo jogo;
 	
 	public GeradorDeScorm(Jogo jogo, File destino){
 		this.jogo = jogo;
+		
 		leitura = new File("src/scorm/imsmanifest.xml");		
-		saida = new File(destino.getAbsolutePath()+"/imsmanifest.xml");
+		escrita = new File(destino.getAbsolutePath()+"/imsmanifest.xml");
+		
 		EntidadeScorm entidadeScorm = new EntidadeScorm();
 		arquivoLido = Arquivo.lerArquivo(leitura);		
 		arquivoLido = arquivoLido.replace("?userFiles",getUserFiles());
+		arquivoLido = arquivoLido.replace("?manifestIdentifier",entidadeScorm.getManifestIdentifier());		
 		arquivoLido = arquivoLido.replace("?orgIdentifier",entidadeScorm.getOrgIdentifier());
 		arquivoLido = arquivoLido.replace("?itemIdentifier",entidadeScorm.getItemIdentifier());
 		arquivoLido = arquivoLido.replace("?scoIdentifier",entidadeScorm.getScoIdentifier());
@@ -31,9 +35,28 @@ public class GeradorDeScorm {
 		arquivoLido = arquivoLido.replace("?b3Identifier",entidadeScorm.getB3Identifier());
 		arquivoLido = arquivoLido.replace("?estiloIdentifier",entidadeScorm.getEstiloIdentifier());
 		arquivoLido = arquivoLido.replace("?scriptIdentifier",entidadeScorm.getScriptIdentifier());
-		arquivoLido = arquivoLido.replace("?userResources",getUserResources());
+		arquivoLido = arquivoLido.replace("?userResources",getUserResources());		
+		Arquivo.salvarArquivo(arquivoLido, escrita);
 		
-		Arquivo.salvarArquivo(arquivoLido, saida);
+		File adlcpOrigem = new File("src/scorm/adlcp_rootv1p2.xsd");
+		File ims_xmlOrigem = new File("src/scorm/ims_xml.xsd");
+		File imscpOrigem = new File("src/scorm/imscp_rootv1p1p2.xsd");
+		File imsmdOrigem = new File("src/scorm/imsmd_rootv1p2p1.xsd");
+		
+		File adlcp = new File(destino.getAbsolutePath()+"/adlcp_rootv1p2.xsd");
+		File ims_xml = new File(destino.getAbsolutePath()+"/ims_xml.xsd");
+		File imscp = new File(destino.getAbsolutePath()+"/imscp_rootv1p1p2.xsd");
+		File imsmd = new File(destino.getAbsolutePath()+"/imsmd_rootv1p2p1.xsd");
+		
+		try {
+			Arquivo.copiaArquivo(adlcpOrigem, adlcp);
+			Arquivo.copiaArquivo(ims_xmlOrigem, ims_xml);
+			Arquivo.copiaArquivo( imscpOrigem, imscp);
+			Arquivo.copiaArquivo(imsmdOrigem, imsmd);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getUserFiles(){		
@@ -99,6 +122,7 @@ public class GeradorDeScorm {
 	
 	private class EntidadeScorm{
 		
+		private String manifestIdentifier;
 		private String titulo;
 		private String orgIdentifier;
 		private String itemIdentifier;
@@ -112,6 +136,7 @@ public class GeradorDeScorm {
 		private String scriptIdentifier;
 		
 		public EntidadeScorm(){
+			manifestIdentifier = GeradorDeIdentificadores.getIdentificador("MAN");
 			orgIdentifier = GeradorDeIdentificadores.getIdentificador("ORG");
 			itemIdentifier = GeradorDeIdentificadores.getIdentificador("ITEM");
 			scoIdentifier = GeradorDeIdentificadores.getIdentificador("SCO");
@@ -121,6 +146,10 @@ public class GeradorDeScorm {
 			b3Identifier = GeradorDeIdentificadores.getIdentificador("B3");
 			estiloIdentifier = GeradorDeIdentificadores.getIdentificador("EST");
 			scriptIdentifier = GeradorDeIdentificadores.getIdentificador("SCR");
+		}
+		
+		public String getManifestIdentifier(){
+			return manifestIdentifier;
 		}
 
 		public String getTitulo() {

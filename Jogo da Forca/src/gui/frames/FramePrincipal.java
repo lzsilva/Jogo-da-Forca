@@ -39,6 +39,7 @@ import controladores.GeradorDeJogo;
 
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class FramePrincipal extends JFrame {
 
@@ -49,12 +50,13 @@ public class FramePrincipal extends JFrame {
 	private JScrollPane scrollPane;
 	private JTabbedPane tabbedPane;
 	private Estilo estilo;
+	private JTextField textFieldTitulo;
 	/**
 	 * Create the frame.
 	 */
 	public FramePrincipal() {
 		setTitle("Editor de Jogo da Forca");
-		setBounds(0, 0, 900, 600);
+		setBounds(0, 0, 820, 600);
 		setVisible(true);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		toolBar = new JToolBar();
@@ -62,6 +64,13 @@ public class FramePrincipal extends JFrame {
 		estilo = new Estilo();
 		
 		panelCentral = new JPanel();
+		
+		JLabel lblNewLabel = new JLabel("T\u00EDtulo:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		textFieldTitulo = new JTextField();
+		textFieldTitulo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textFieldTitulo.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -69,7 +78,12 @@ public class FramePrincipal extends JFrame {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
-						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(14)
+							.addComponent(lblNewLabel)
+							.addGap(18)
+							.addComponent(textFieldTitulo, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -77,8 +91,12 @@ public class FramePrincipal extends JFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(textFieldTitulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(19)
+					.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 
@@ -253,6 +271,7 @@ public class FramePrincipal extends JFrame {
 			// TODO Auto-generated method stub
 			ControladorDeJogo controlador = new ControladorDeJogo(tabbedPane);			
 			Jogo jogo = controlador.getJogo();
+			jogo.setTitulo(textFieldTitulo.getText());
 			GeradorDeJogo geradorDeJogo = new GeradorDeJogo(jogo,estilo);
 			geradorDeJogo.criaJogo();
 		}
@@ -265,6 +284,7 @@ public class FramePrincipal extends JFrame {
 			// TODO Auto-generated method stub
 			ControladorDeJogo controlador = new ControladorDeJogo(tabbedPane);			
 			Jogo jogo = controlador.getJogo();
+			jogo.setTitulo(textFieldTitulo.getText());
 			GeradorDeJogo geradorDeJogo = new GeradorDeJogo(jogo,estilo);
 			geradorDeJogo.criaPacoteScorm();
 		}
@@ -278,28 +298,5 @@ public class FramePrincipal extends JFrame {
 			FrameConfiguraAparencia frameConfiguraAparencia = new FrameConfiguraAparencia(estilo);
 			frameConfiguraAparencia.setVisible(true);
 		}
-	}
-
-	public void mostraJogo(Jogo jogo) {
-		String stJogo = "";
-		ArrayList<Fase> fases = jogo.getFases();
-		int contadorFases = 1;
-		int contadorPalavras = 1;
-		for (Fase f : fases) {
-			stJogo = stJogo + "var " + "fase" + contadorFases + " = new Fase();\n";
-			stJogo = stJogo + "jogo.arrayFase.push(fase" + contadorFases + ");\n";
-			ArrayList<Palavra> palavras = f.getPalavras();
-			
-			for (Palavra p : palavras) {
-				stJogo = stJogo + "var palavra" + contadorPalavras
-						+ " = new Palavra('" + p.getPalavra() +"','"
-						+ p.getDica() +"',"+p.getQuantidadeDeErrosTolerados()+");\n";
-				stJogo = stJogo+"fase"+contadorFases+".arrayPalavra.push("+"palavra"+contadorPalavras+");\n";
-				contadorPalavras++;
-			}
-			stJogo = stJogo+"\n";
-			contadorFases++;
-		}
-		System.out.println(stJogo);
 	}
 }

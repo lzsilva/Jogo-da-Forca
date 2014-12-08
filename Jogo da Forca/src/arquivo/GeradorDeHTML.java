@@ -8,19 +8,16 @@ import entidades.Jogo;
 public class GeradorDeHTML {
 	
 	private File leitura;
-	private File saida;
-	
+	private File escrita;
+	private String stringLeitura;
 
-	public GeradorDeHTML(File destino){		
-		leitura = new File("src/recursos/index.html");			
+	public GeradorDeHTML(File destino, String titulo){		
+		leitura = new File("src/recursos/index.html");
+		escrita = new File(destino.getAbsolutePath()+"/index.html");		
+		stringLeitura = Arquivo.lerArquivo(leitura);
+		stringLeitura = stringLeitura.replace("?titulo",titulo);		
+		Arquivo.salvarArquivo(stringLeitura, escrita);
 		
-		saida = new File(destino.getAbsolutePath()+"/index.html");					
-		try {
-			Arquivo.copiaArquivo(leitura, saida);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 }
