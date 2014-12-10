@@ -49,7 +49,7 @@ public class GeradorDeJogo {
 			new GeradorDeBonecos(hash.get("bonecos"));
 			Compactador compactador = new Compactador();
 			try {
-				compactador.zip(hash.get("raiz"),new File("C:/Users/Luiz/Desktop/neo2.zip"));
+				compactador.zip(hash.get("raiz"),new File("C:/Users/Luiz/Desktop/"+hash.get("raiz").getName()+".zip"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

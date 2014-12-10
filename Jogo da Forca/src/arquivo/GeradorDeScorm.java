@@ -23,7 +23,8 @@ public class GeradorDeScorm {
 		escrita = new File(destino.getAbsolutePath()+"/imsmanifest.xml");
 		
 		EntidadeScorm entidadeScorm = new EntidadeScorm();
-		arquivoLido = Arquivo.lerArquivo(leitura);		
+		arquivoLido = Arquivo.lerArquivo(leitura);
+		arquivoLido = arquivoLido.replace("?titulo",jogo.getTitulo());
 		arquivoLido = arquivoLido.replace("?userFiles",getUserFiles());
 		arquivoLido = arquivoLido.replace("?manifestIdentifier",entidadeScorm.getManifestIdentifier());		
 		arquivoLido = arquivoLido.replace("?orgIdentifier",entidadeScorm.getOrgIdentifier());
@@ -35,7 +36,8 @@ public class GeradorDeScorm {
 		arquivoLido = arquivoLido.replace("?b3Identifier",entidadeScorm.getB3Identifier());
 		arquivoLido = arquivoLido.replace("?estiloIdentifier",entidadeScorm.getEstiloIdentifier());
 		arquivoLido = arquivoLido.replace("?scriptIdentifier",entidadeScorm.getScriptIdentifier());
-		arquivoLido = arquivoLido.replace("?userResources",getUserResources());		
+		arquivoLido = arquivoLido.replace("?userResources",getUserResources());	
+		arquivoLido = arquivoLido.replace("?scoName",destino.getName()+".html");
 		Arquivo.salvarArquivo(arquivoLido, escrita);
 		
 		File adlcpOrigem = new File("src/scorm/adlcp_rootv1p2.xsd");

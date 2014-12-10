@@ -41,9 +41,8 @@ public class Compactador {
                 origem = new BufferedInputStream(new FileInputStream(arquivo),  
                         TAMANHO_BUFFER);  
   
-                String nomeEntrada = arquivo.getAbsolutePath();  
-  
-                System.out.println(nomeEntrada);  
+                String nomeEntrada = arquivo.getAbsolutePath();    
+                
   
                 if (pastaPrincipal.isDirectory()) {  
                     nomeEntrada = nomeEntrada.substring(pastaPrincipal  
