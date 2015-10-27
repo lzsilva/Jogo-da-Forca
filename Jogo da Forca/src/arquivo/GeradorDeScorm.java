@@ -2,6 +2,7 @@ package arquivo;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import controladores.GeradorDeIdentificadores;
@@ -11,7 +12,7 @@ import entidades.Palavra;
 
 public class GeradorDeScorm {
 	
-	private File leitura;
+	private InputStream leitura;
 	private File escrita;
 	private String arquivoLido;
 	private Jogo jogo;
@@ -19,7 +20,7 @@ public class GeradorDeScorm {
 	public GeradorDeScorm(Jogo jogo, File destino){
 		this.jogo = jogo;
 		
-		leitura = new File("src/scorm/imsmanifest.xml");		
+		leitura = GeradorDeScorm.class.getResourceAsStream("/scorm/imsmanifest.xml");		
 		escrita = new File(destino.getAbsolutePath()+"/imsmanifest.xml");
 		
 		EntidadeScorm entidadeScorm = new EntidadeScorm();

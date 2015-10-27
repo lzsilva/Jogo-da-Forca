@@ -2,6 +2,7 @@ package arquivo;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import entidades.Fase;
@@ -11,6 +12,7 @@ import entidades.Palavra;
 public class GeradorDeMultimidia {
 	
 	private File origem;
+	private InputStream origemInputStream;
 	private File destino;
 	
 	public GeradorDeMultimidia(Jogo jogo, File file){
@@ -23,7 +25,7 @@ public class GeradorDeMultimidia {
 			for (Palavra p : palavras) {
 				if(p.getURLMultimidia()!=null){
 					origem = new File(p.getURLMultimidia());
-					
+					origemInputStream = GeradorDeMultimidia.class.getResourceAsStream(p.getURLMultimidia());
 					if(p.getTipoMultimidia().equalsIgnoreCase("imagem")){
 						destino = new File(file.getAbsolutePath()+"/imagens/"+origem.getName().replace(" ",""));
 						
@@ -35,12 +37,7 @@ public class GeradorDeMultimidia {
 								destino = new File(file.getAbsolutePath()+"/audios/"+origem.getName().replace(" ",""));
 							}
 										
-					try {
-						Arquivo.copiaArquivo(origem, destino);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					Arquivo.copiaArquivo2(origemInputStream, destino.toURI().getPath());
 				}
 			}
 		}

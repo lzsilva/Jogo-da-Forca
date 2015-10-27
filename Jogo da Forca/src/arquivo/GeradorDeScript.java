@@ -1,6 +1,7 @@
 package arquivo;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import entidades.Fase;
@@ -10,14 +11,14 @@ import entidades.Palavra;
 public class GeradorDeScript {
 	private Jogo jogo;
 	private File destino;
-	private File arquivoForcaLido;
+	private InputStream arquivoForcaLido;
 	private File arquivoForcaGerado;
 	private String stringJS;
 	
 	public GeradorDeScript(Jogo jogo, File destino){
 		this.jogo = jogo;
 		this.destino = arquivoForcaGerado;
-		arquivoForcaLido = new File("src/recursos/forcajs.js");		
+		arquivoForcaLido = GeradorDeScript.class.getResourceAsStream("/recursos/forcajs.js");		
 		arquivoForcaGerado = new File(destino.getAbsolutePath()+"/forcajs.js");
 		stringJS = Arquivo.lerArquivo(arquivoForcaLido);
 		stringJS = stringJS.replace("?fases", getStringFases());		

@@ -56,11 +56,11 @@ public class Arquivo {
 		}
 	}
 	
-	public static String lerArquivo(File file) {
+	public static String lerArquivo(InputStream file) {
 			String linhaAuxiliar = "";
 		try {
 			Reader reader;
-			reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+			reader = new InputStreamReader(file, "UTF-8");
 			BufferedReader bf = new BufferedReader(reader);
 			String linha = null;			
 			while((linha = bf.readLine()) != null ) {  

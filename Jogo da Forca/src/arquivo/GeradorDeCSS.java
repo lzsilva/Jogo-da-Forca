@@ -2,13 +2,14 @@ package arquivo;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import entidades.Estilo;
 
 public class GeradorDeCSS {
 
 	private File destino;
-	private File arquivoCSSLido;
+	private InputStream arquivoCSSLido;
 	private File arquivoCSSGerado;
 	private Estilo estilo;
 	private String stringCSS;
@@ -16,7 +17,7 @@ public class GeradorDeCSS {
 		this.estilo = estilo;
 		
 		this.destino = arquivoCSSGerado;
-		arquivoCSSLido = new File("src/recursos/estilo.css");
+		arquivoCSSLido = GeradorDeCSS.class.getResourceAsStream("/recursos/estilo.css");
 		arquivoCSSGerado = new File(destino.getAbsolutePath() + "/estilo.css");		
 		stringCSS = Arquivo.lerArquivo(arquivoCSSLido);	
 		stringCSS = stringCSS.replace("?bgColor", estilo.getBackgroundColor());
