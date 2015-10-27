@@ -16,7 +16,7 @@ public class GeradorDeDiretorios {
 		hashDiretorios = new HashMap<String, File>();
 		chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setSelectedFile(new File("forca"));
+		chooser.setSelectedFile(new File("/forca"));
 		chooser.setFileFilter(new FileNameExtensionFilter("Diretórios", "***"));
 	}
 
@@ -26,8 +26,9 @@ public class GeradorDeDiretorios {
 			
 			File diretorio = chooser.getSelectedFile();			
 			
-			String stringPastaRaiz = diretorio.getAbsolutePath();			
+			String stringPastaRaiz = diretorio.toURI().getPath();			
 			String stringPastaRecursos = stringPastaRaiz+"/recursos";
+			
 			String stringPastaCSS = stringPastaRecursos+"/css";
 			String stringPastaScript = stringPastaRecursos+"/script";
 			String stringPastaMultimidia = stringPastaRecursos+"/multimidia";

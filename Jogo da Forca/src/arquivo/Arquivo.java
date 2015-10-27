@@ -28,6 +28,34 @@ public class Arquivo {
         out.close();
 	}
 	
+	public static void copiaArquivo2(InputStream origem, String destino){
+		FileOutputStream fos = null;
+		try {			 
+		    fos = new FileOutputStream(destino);
+		    byte[] buf = new byte[2048];
+		    int r = origem.read(buf);
+		    while(r != -1) {
+		        fos.write(buf, 0, r);
+		        r = origem.read(buf);
+		    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		    if(fos != null) {
+		        try {
+					fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		}
+	}
+	
 	public static String lerArquivo(File file) {
 			String linhaAuxiliar = "";
 		try {
